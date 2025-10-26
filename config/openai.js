@@ -1,8 +1,9 @@
 import OpenAI from "openai";
-import dotenv from "dotenv";
 
-// Load environment variables
-dotenv.config();
+// Only load dotenv locally
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv/config");
+}
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

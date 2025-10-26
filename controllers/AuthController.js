@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken";
 import Admin from "../models/Admin.js";
 import dotenv from "dotenv";
 
-// Load environment variables
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv/config");
+}
 
 export const loginAdmin = async (req, res) => {
   try {

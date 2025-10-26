@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-// Load environment variables from .env
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv/config");
+}
 
 const connectDB = async () => {
   try {

@@ -2,7 +2,9 @@ import stripePackage from "stripe";
 import paypal from "@paypal/checkout-server-sdk";
 import dotenv from "dotenv";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv/config");
+}
 const stripe = stripePackage(process.env.STRIPE_SECRET_KEY);
 
 // PayPal environment
