@@ -1,7 +1,5 @@
-// Load environment variables only locally
-if (process.env.NODE_ENV !== "production") {
-  import("dotenv/config");
-}
+import dotenv from "dotenv";
+dotenv.config(); // MUST be first
 
 import express from "express";
 import cors from "cors";
@@ -19,13 +17,13 @@ import chatRoutes from "./routes/chatRoute.js";
 import getInvolvedRoute from "./routes/getInvolvedRoute.js";
 import supportRoutes from "./routes/supportRoute.js";
 import sponsorRoutes from "./routes/sponsorRoutes.js";
-import teamRoutes from "./routes/teamRoutes.js";
+import teamRoutes from "./routes/teamRoute.js";
 import processRoutes from "./routes/recruitingRoute.js";
 import educationRoutes from "./routes/educationRoute.js";
 import projectSlideRoutes from "./routes/carouserRoute.js";
-import donationImageRoutes from "./routes/donationImageRoutes.js";
+import donationImageRoutes from "./routes/donationImageRoute.js";
 import emailRoutes from "./routes/EmailsRoute.js";
-import galleryRoutes from "./routes/galleryRoutes.js";
+import galleryRoutes from "./routes/galleryRoute.js";
 import testimonialsRoutes from "./routes/commentsRoutes.js";
 import authRoutes from "./routes/AuthRoutes.js";
 import adminRoutes from "./routes/AdminRoutes.js";
@@ -37,10 +35,10 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Enable CORS
+// Enable CORS for frontend
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://stem-inspire-2.vercel.app"],
     credentials: true,
   })
 );
@@ -48,10 +46,9 @@ app.use(
 // Parse JSON
 app.use(express.json());
 
-// Debug logs for environment variables
+// Debug logs
 console.log("✅ Mongo URI:", process.env.MONGO_URI ? "Loaded" : "Missing");
 console.log("✅ JWT Secret:", process.env.JWT_SECRET ? "Loaded" : "Missing");
-console.log("✅ OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "Loaded" : "Missing");
 
 // __dirname setup for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -79,6 +76,7 @@ app.use("/api/emails", emailRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/testimonials", testimonialsRoutes);
 app.use("/api/payments", paymentRoutes);
+
 
 // Auth/Admin Routes
 app.use("/api/admin", authRoutes);
