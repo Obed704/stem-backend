@@ -38,10 +38,11 @@ connectDB();
 // Enable CORS for frontend
 app.use(
   cors({
-    origin: ["https://stem-inspire-2.vercel.app"],
+    origin: ["https://stem-inspire-2.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );
+
 
 // Parse JSON
 app.use(express.json());
