@@ -13,7 +13,6 @@ import championRoutes from "./routes/ChampionsRoute.js";
 import downloadsRoutes from "./routes/downloadRouter.js";
 import videoRoutes from "./routes/videoRoutes.js";
 import missionVisionRoutes from "./routes/MissionVisionRoute.js";
-import chatRoutes from "./routes/chatRoute.js";
 import getInvolvedRoute from "./routes/getInvolvedRoute.js";
 import supportRoutes from "./routes/supportRoute.js";
 import sponsorRoutes from "./routes/sponsorRoutes.js";
@@ -59,7 +58,6 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/api/chat", chatRoutes);
 app.use("/api/slides", slideRoutes);
 app.use("/api/mission-vision", missionVisionRoutes);
 app.use("/api/champions", championRoutes);
