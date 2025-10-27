@@ -37,7 +37,7 @@ connectDB();
 // Enable CORS for frontend
 app.use(
   cors({
-    origin: ["https://stem-inspire-2.vercel.app", "http://localhost:5173"],
+    origin: ["https://stem-inspire-2.vercel.app", "https://stem-front-end.vercel.app"],
     credentials: true,
   })
 );
